@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/crm
+    username: crm
+    password: crm
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+  thymeleaf:
+    cache: false
+
+server:
+  port: 8080
