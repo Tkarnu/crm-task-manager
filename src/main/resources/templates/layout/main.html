@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CRM</title>
+</head>
+<body>
+
+<header>
+    <h2>CRM</h2>
+    <nav>
+        <a th:href="@{/tasks}">Tasks</a> |
+        <a th:href="@{/logout}">Logout</a>
+    </nav>
+    <hr>
+</header>
+
+<main th:fragment="content">
+</main>
+
+</body>
+</html>

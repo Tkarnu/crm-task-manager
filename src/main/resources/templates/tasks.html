@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/main :: content">
+<body>
+
+<h3>Tasks</h3>
+
+<form th:action="@{/tasks}" method="post" th:object="${task}">
+    <input th:field="*{title}" placeholder="Task title">
+    <button type="submit">Add</button>
+</form>
+
+<hr>
+
+<ul>
+    <li th:each="t : ${tasks}">
+        <span th:text="${t.title}"></span>
+
+        <a th:href="@{/tasks/edit/{id}(id=${t.id})}">Edit</a>
+
+        <form th:action="@{/tasks/delete/{id}(id=${t.id})}"
+              method="post"
+              style="display:inline">
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+
+</body>
+</html>
