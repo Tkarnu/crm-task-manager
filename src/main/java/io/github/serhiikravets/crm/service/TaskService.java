@@ -1,4 +1,5 @@
 package io.github.serhiikravets.crm.service;
+
 import io.github.serhiikravets.crm.entity.Task;
 import io.github.serhiikravets.crm.entity.User;
 import io.github.serhiikravets.crm.repository.TaskRepository;
@@ -17,7 +18,15 @@ public class TaskService {
         return taskRepository.findByUser(user);
     }
 
+    public Task findById(Long id) {
+        return taskRepository.findById(id).orElseThrow();
+    }
+
     public Task save(Task task) {
         return taskRepository.save(task);
+    }
+
+    public void deleteById(Long id) {
+        taskRepository.deleteById(id);
     }
 }

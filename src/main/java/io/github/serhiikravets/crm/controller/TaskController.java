@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
@@ -32,6 +34,26 @@ public class TaskController {
         User user = userService.findByEmail(principal.getName());
         task.setUser(user);
         taskService.save(task);
+        return "redirect:/tasks";
+    }
+    @GetMapping("/edit/{id}")
+    public String editForm(@PathVariable Long id, Model model) {
+        Task task = taskService.findById(id);
+        model.addAttribute("task", task);
+        return "edit-task";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, @ModelAttribute Task task) {
+        Task existing = taskService.findById(id);
+        existing.setTitle(task.getTitle());
+        taskService.save(existing);
+        return "redirect:/tasks";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        taskService.deleteById(id);
         return "redirect:/tasks";
     }
 }
