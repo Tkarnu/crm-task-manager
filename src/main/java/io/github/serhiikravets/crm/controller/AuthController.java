@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
         @GetMapping("/login")
         public String login() {
-            return "login";
+            return "auth/login";
         }
 
         @GetMapping("/register")
         public String registerForm() {
-            return "register";
+            return "auth/register";
         }
 
         @PostMapping("/register")
