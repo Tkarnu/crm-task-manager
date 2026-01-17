@@ -36,14 +36,14 @@ public class TaskController {
         taskService.save(task);
         return "redirect:/tasks";
     }
-    @GetMapping("/edit/{id}")
+    @GetMapping("/tasks/edit/{id}")
     public String editForm(@PathVariable Long id, Model model) {
         Task task = taskService.findById(id);
         model.addAttribute("task", task);
         return "edit-task";
     }
 
-    @PostMapping("/edit/{id}")
+    @PostMapping("/tasks/edit/{id}")
     public String edit(@PathVariable Long id, @ModelAttribute Task task) {
         Task existing = taskService.findById(id);
         existing.setTitle(task.getTitle());
@@ -51,7 +51,7 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
-    @PostMapping("/delete/{id}")
+    @PostMapping("/tasks/delete/{id}")
     public String delete(@PathVariable Long id) {
         taskService.deleteById(id);
         return "redirect:/tasks";
